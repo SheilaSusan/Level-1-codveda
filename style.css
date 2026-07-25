@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    background-color: #22333b;
+}
+
+.logo img{
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    height: 75px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+body{
+    background-color: #eae0d5;
+}
+
+.nav-container{
+   display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-menu ul{
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    gap: 40px;
+}

@@ -60,7 +60,7 @@ input:focus{
 
 .error{
    color: #d93025;
-   font-size: 0.9rem;
+   font-size: 0.8rem;
    margin-top: 0.3rem;
    min-height: 1rem;
 }
@@ -94,7 +94,7 @@ button[type="submit"]:hover{
 .password-rules{
     list-style: none;
     margin-top: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     display: none;
 }
 

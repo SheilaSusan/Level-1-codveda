@@ -6,6 +6,7 @@ const password = document.getElementById('password');
 const passwordRules = document.getElementById('passwordRules')
 const modalOverlay = document.getElementById('modalOverlay');
 const closeModalBtn = document.getElementById('closeModalBtn');
+const header = document.querySelector('header')
 const footer = document.querySelector('footer');
 
 
@@ -118,6 +119,7 @@ const footer = document.querySelector('footer');
             form.reset(); 
             [name, email, phone, password].forEach((input) => input.classList.remove('valid')); //remove valid class from inputs after form reset//
 
+            header.style.display = 'none'; //hide the header//
             form.style.display = 'none'; //hide the form after successful submission//
             footer.style.display = 'none'; //hide the footer after successful submission//
             modalOverlay.classList.add('show'); //show the modal overlay after successful submission//  
@@ -126,6 +128,7 @@ const footer = document.querySelector('footer');
 
     closeModalBtn.addEventListener('click', () =>{
         modalOverlay.classList.remove('show'); //hide the popup//
+        header.style.display = 'block'
         form.style.display ='block'; //brings the form back//
         footer.style.display = 'block'; //brings the footer back//
         passwordRules.classList.remove('active'); //hides password rules when form is opened//

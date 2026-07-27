@@ -13,6 +13,9 @@ header{
 
 body{
     background-color: #eae0d5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .title h1{
@@ -23,8 +26,13 @@ body{
 }
 
 form{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 2rem;
     margin: 3rem auto;
+    width: 90%;
     max-width: 420px;
     border-radius: 10px;
     background-color: #c6ac8f;
@@ -81,14 +89,6 @@ button[type="submit"]{
 
 button[type="submit"]:hover{
     background-color: #0a0908;
-}
-
-.success-message{
-    display: none;
-    color: #22333b;
-    font-weight: 600;
-    margin-top: 1rem;
-    text-align: center;
 }
 
 .password-rules{
@@ -173,23 +173,6 @@ footer{
     color: #fff;
 }
 
-.social-links{
-    margin-top: 0.5rem;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.social-links a{
-    text-decoration: none;
-    color:#0a0908
-}
-
-.social-links a:hover{
-    color: #c6ac8f;
-    text-decoration: underline;
-}
-
 @media (max-width: 600px){
     .title h1{
         font-size: 1.2rem;
@@ -202,7 +185,7 @@ footer{
 
     input{
         font-size: 0.95rem;
-        padding: 1.5rem;
+        padding: 0.7rem 0.9rem;
     }
 
     label{

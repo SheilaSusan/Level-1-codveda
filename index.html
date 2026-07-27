@@ -9,18 +9,8 @@
     </head>
     <body>
         <header>
-            <div class="nav-container">
-                <a href="#" class="logo">
-                    <img src="images/logo.png" alt="Logo">
-                </a>
-                <nav class="nav-menu">
-              <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>  
-              </ul>    
-                </nav>
+            <div class="title">
+                <h1>Home Page</h1>
             </div>
         </header>
         <form id="contacts" novalidate>
@@ -42,7 +32,12 @@
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" id="password" name="password" required>
-                <span class="error" id="passwordError"></span>
+                <ul class="password-rules" id="passwordRules">
+                    <li id="ruleLength">At least 8 characters long</li>
+                    <li id="ruleUppercase">At least one uppercase letter</li>
+                    <li id="ruleNumber">At least one number</li>
+                    <li id="ruleSpecial">At least one special character</li>
+                </ul>
             </div>   
 
             <button type="submit">Submit</button>
@@ -52,7 +47,7 @@
             <div class="modal-overlay" id="modalOverlay">
                 <div class="modal-box">
                     <h2>Form submitted successfully!</h2>
-                    <button id="closeModalBtn" class="close-btn">Close</button>
+                    <button id="closeModalBtn" class="close-btn">Return to home page</button>
                 </div>
             </div>
             

@@ -3,6 +3,7 @@ const name = document.getElementById('name');
 const email = document.getElementById('email');
 const phone = document.getElementById('phone');
 const password = document.getElementById('password');
+const passwordRules = document.getElementById('passwordRules')
 const modalOverlay = document.getElementById('modalOverlay');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const footer = document.querySelector('footer');
@@ -54,42 +55,55 @@ const footer = document.querySelector('footer');
 
     function validatePassword(){
         const value = password.value;
-        if(value.length < 8){ //if password is less than 8 characters then show error//
-            showError(password, 'Password must be at least 8 characters long');
-            return false;
+
+        const lasLength =value.length >=8;
+        const hasUppercase = /[A-Z]/.test(value);
+        const hasNumber = /[0-9]/.test(value);
+        const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+
+        toggleRule('ruleLength', lasLength, 'At least 8 characters long');
+        toggleRule('ruleUppercase', hasUppercase, 'At least one uppercase letter');
+        toggleRule('ruleNumber', hasNumber, 'At least one number');
+        toggleRule('ruleSpecial', hasSpecial, 'At least one special character')
+
+        const isValid = lasLength && hasUppercase && hasNumber && hasSpecial;
+
+        if(isValid){
+            password.classList.remove('invalid');
+            password.classList.add('valid');
+        } else{
+            password.classList.remove('valid');
+            password.classList.add('invalid');
         }
-        if(!/[A-Z]/.test(value) || !/[0-9]/.test(value)){ //if password does not contain at least one uppercase letter and one number then show error//
-            showError(password, 'Password must contain at least one uppercase letter and one number');
-            return false;
+
+        return isValid;
+    }
+    function toggleRule(id, condition, text){
+        const li = document.getElementById(id);
+        li.textContent = text;
+        if(condition){
+            li.classList.add('valid');
+        } else{
+            li.classList.remove('valid');
         }
-        clearError(password); //if password is valid then clear error//
-        return true;
     }
 
 
-    [name, email, phone, password].forEach((input) => {
-        input.addEventListener('blur', () => {
-            if(input === name){
-                validateName();
-            } else if(input === email){
-                validateEmail();
-            } else if(input === phone){
-                validatePhone();
-            } else if(input === password){
-                validatePassword();
-            }
+    [name, email, phone, password].forEach((input) => { //validates every input field on input event//
+        input.addEventListener('blur', () => { 
+            if(input === name) validateName();
+            else if(input === email) validateEmail();
+            else if(input === phone) validatePhone();
+            else if(input === password) validatePassword();
         });
-    
+    });
 
-        input.addEventListener('input', () => {
-            const errorSpan = document.getElementById(input.id + 'Error');
-            if(errorSpan.textContent){
-                if(input === name) validateName();
-                else if(input === email) validateEmail();
-                else if(input === phone) validatePhone();
-                else if(input === password) validatePassword();
-            }   
-        });
+    password.addEventListener('input', () => { //validates password input for every keystroke//
+        validatePassword()
+    })
+
+    password.addEventListener('focus', () => {
+        passwordRules.classList.add('active');
     });
 
     form.addEventListener('submit', function (e){
@@ -111,5 +125,8 @@ const footer = document.querySelector('footer');
     });
 
     closeModalBtn.addEventListener('click', () =>{
-        modalOverlay.classList.remove('show');
-    })
+        modalOverlay.classList.remove('show'); //hide the popup//
+        form.style.display ='block'; //brings the form back//
+        footer.style.display = 'block'; //brings the footer back//
+        passwordRules.classList.remove('active'); //hides password rules when form is opened//
+    });
